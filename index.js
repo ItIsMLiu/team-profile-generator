@@ -5,8 +5,6 @@ const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-
 const render = require("./src/page-template.js");
 
 let teams = [];
@@ -127,6 +125,13 @@ const promptMenu = async () => {
 
 // Function to write HTML file
 function writeToFile(fileName, data) {
+    const OUTPUT_DIR = path.resolve(__dirname, "output");
+
+    // checking if the output folder exists, and create it if not
+    if (!fs.existsSync(OUTPUT_DIR)) {
+        fs.mkdirSync(OUTPUT_DIR);
+    }
+
     const outputPath = path.join(OUTPUT_DIR, fileName);
     fs.writeFile(outputPath, data, (err) => 
     err? console.error(err) : console.log('Success! File written to:', outputPath)
