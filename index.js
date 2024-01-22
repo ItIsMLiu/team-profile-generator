@@ -10,31 +10,123 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
+let team = [];
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
-inquirer
-    .prompt([
+const promptManager = async () => {
+    const managerAnswers = await inquirer.prompt([
         {
             type: 'input',
-            message: "",
-            name:'',
+            message: "Please enter the team manager's name.",
+            name:'managerName',
         },
         {
             type: 'input',
-            message: "",
-            name:'',
+            message: "Enter the team manager's employee ID.",
+            name:'managerId',
         },
         {
             type: 'input',
-            message: "",
-            name:'',
+            message: "Enter the team manager's email address.",
+            name:'managerEmail',
+        },
+        {
+            type: 'input',
+            message: "Enter the team manager's office number.",
+            name:'managerOfficeNumber',
+        },
+    ]);
+
+    const manager = new Manager(managerAnswers.managerName, managerAnswers.managerId, managerAnswers.managerEmail, managerAnswers.managerOfficeNumber)
+    
+    team.push(manager);
+    console.log('Manager added:', managerAnswers);
+    return promptMenu();
+}
+
+const promptEngineer = async () => {
+    const engineerAnswers = await inquirer.prompt([
+        {
+            type: 'input',
+            message: "Enter the engineer's name.",
+            name:'engineerName',
+        },
+        {
+            type: 'input',
+            message: "Enter the engineer's ID.",
+            name:'engineerId',
+        },
+        {
+            type: 'input',
+            message: "Enter the engineer's email.",
+            name:'engineerEmail',
+        },
+        {
+            type: 'input',
+            message: "Enter the engineer's GitHub username.",
+            name:'engineerGithub',
         },
     ])
-    .then ((response) => 
 
-    );
+    const engineer = new Engineer (engineerAnswers.engineerName, engineerAnswers.engineerId, engineerAnswers.engineerEmail, engineerAnswers.engineerGithub)
 
-    const manager1 = new Manager()
-        .getId();
-    console.log(manager1);
+    team.push(engineer);
+    console.log('Engineer added:', engineerAnswers);
+    return promptMenu();
+}
+
+const promptIntern = async () => {
+    const internAnswers = await inquirer.prompt([
+        {
+            type: 'input',
+            message: "Enter the intern's name.",
+            name:'internName',
+        },
+        {
+            type: 'input',
+            message: "Enter the intern's ID.",
+            name:'internId',
+        },
+        {
+            type: 'input',
+            message: "Enter the intern's email.",
+            name:'internEmail',
+        },
+        {
+            type: 'input',
+            message: "Enter the intern's School.",
+            name:'internSchool',
+        },
+    ])
+
+    const intern = new Intern (internAnswers.internName, internAnswers.internId, internAnswers.internEmail, internAnswers.internSchool)
+   
+    team.push(intern);
+    console.log('Intern added:', internAnswers);
+    return promptMenu();
+}
+
+const promptMenu = async () => {
+    const chosenOption = await inquirer.prompt([
+        {
+            type: 'list',
+            message: "Select one of the following options.",
+            name:'menuOption',
+            choices: ['Add an engineer', 'Add an intern', 'Finish building the team'],
+        },
+    ])
+
+    if (chosenOption.menuOption === 'Add an engineer') {
+        await promptEngineer();
+    } else if (chosenOption.menuOption === "Add an intern") {
+        await promptIntern();
+    } else {
+        console.log('Team:', team);
+        return;
+    }
+}
+
+promptManager().then(() => {
+    console.log('Team building completed!')
+})
