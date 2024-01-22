@@ -13,7 +13,6 @@ const render = require("./src/page-template.js");
 let team = [];
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
-
 const promptManager = async () => {
     const managerAnswers = await inquirer.prompt([
         {
@@ -127,6 +126,17 @@ const promptMenu = async () => {
     }
 }
 
+// Function to write HTML file
+function writeToFile(fileName, data) {
+    outputPath = path.join(OUTPUT_DIR, fileName);
+    fs.writeFile(outputPath, data, (err) => 
+    err? console.error(err) : console.log('Success! File written to:', outputPath)
+    );
+}
+
 promptManager().then(() => {
     console.log('Team building completed!')
+    let htmlContents = render.generateTeam(team);
+    console.log(htmlContents);
+    writeToFile("team.html", htmlContents);
 })
