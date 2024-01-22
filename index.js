@@ -6,11 +6,10 @@ const path = require("path");
 const fs = require("fs");
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./src/page-template.js");
 
-let team = [];
+let teams = [];
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 const promptManager = async () => {
@@ -39,7 +38,7 @@ const promptManager = async () => {
 
     const manager = new Manager(managerAnswers.managerName, managerAnswers.managerId, managerAnswers.managerEmail, managerAnswers.managerOfficeNumber)
     
-    team.push(manager);
+    teams.push(manager);
     console.log('Manager added:', managerAnswers);
     return promptMenu();
 }
@@ -70,7 +69,7 @@ const promptEngineer = async () => {
 
     const engineer = new Engineer (engineerAnswers.engineerName, engineerAnswers.engineerId, engineerAnswers.engineerEmail, engineerAnswers.engineerGithub)
 
-    team.push(engineer);
+    teams.push(engineer);
     console.log('Engineer added:', engineerAnswers);
     return promptMenu();
 }
@@ -101,7 +100,7 @@ const promptIntern = async () => {
 
     const intern = new Intern (internAnswers.internName, internAnswers.internId, internAnswers.internEmail, internAnswers.internSchool)
    
-    team.push(intern);
+    teams.push(intern);
     console.log('Intern added:', internAnswers);
     return promptMenu();
 }
@@ -121,14 +120,14 @@ const promptMenu = async () => {
     } else if (chosenOption.menuOption === "Add an intern") {
         await promptIntern();
     } else {
-        console.log('Team:', team);
+        console.log('Team:', teams);
         return;
     }
 }
 
 // Function to write HTML file
 function writeToFile(fileName, data) {
-    outputPath = path.join(OUTPUT_DIR, fileName);
+    const outputPath = path.join(OUTPUT_DIR, fileName);
     fs.writeFile(outputPath, data, (err) => 
     err? console.error(err) : console.log('Success! File written to:', outputPath)
     );
@@ -136,7 +135,8 @@ function writeToFile(fileName, data) {
 
 promptManager().then(() => {
     console.log('Team building completed!')
-    let htmlContents = render.generateTeam(team);
-    console.log(htmlContents);
+    // call render function
+    let htmlContents = render(teams);
+    // call writeToFile function with filename and contents
     writeToFile("team.html", htmlContents);
 })
