@@ -13,3 +13,28 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+inquirer
+    .prompt([
+        {
+            type: 'input',
+            message: "",
+            name:'',
+        },
+        {
+            type: 'input',
+            message: "",
+            name:'',
+        },
+        {
+            type: 'input',
+            message: "",
+            name:'',
+        },
+    ])
+    .then ((response) => 
+
+    );
+
+    const manager1 = new Manager()
+        .getId();
+    console.log(manager1);

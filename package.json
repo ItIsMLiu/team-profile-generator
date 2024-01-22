@@ -1,0 +1,18 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "ML",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.0.0",
+    "jest": "^29.7.0"
+  }
+}

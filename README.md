@@ -8,7 +8,7 @@ This project involves transforming the provided starter code into a fully functi
 A set of initial code files, as depicted in the second commit, was given, featuring starter js and test.js files. The project then underwent further development, incorporating my recently acquired skills in Object-Oriented Programming. Below, I outline how these skills were seamlessly integrated into the project:
 
 - Constructors & Prototype
-- Test-Driven Development
+- Test-Driven Development (derive code from test.js files)
 - ES6 Classes
 
 <!-- ## Installation
@@ -28,6 +28,12 @@ node index.js
 ```
 
 ## Usage 
+
+This application uses Jest for running the unit tests and Inquirer for collecting input from the user. The application will be invoked by using the following command:
+``` terminal
+node index.js
+```
+
 
 To launch the README generator application, open your terminal and proceed with the installation steps outlined above. Subsequently, the user will receive prompts to provide information regarding the application repository, including the project title, description, table of contents, installation instructions, usage details, licensing information, contribution guidelines, testing procedures, and any questions they may have.
 
