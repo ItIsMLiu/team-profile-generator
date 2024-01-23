@@ -16,21 +16,33 @@ const promptManager = async () => {
             type: 'input',
             message: "Please enter the team manager's name.",
             name:'managerName',
+            validate: (input) => {
+                return input !== '' ? true : "Name cannot be empty";
+            }
         },
         {
             type: 'input',
             message: "Enter the team manager's employee ID.",
             name:'managerId',
+            validate: (input) => {
+                return input !== '' && !isNaN(input) ? true : "Please enter a valid employee ID (numeric only)";
+            }
         },
         {
             type: 'input',
             message: "Enter the team manager's email address.",
             name:'managerEmail',
+            validate: (input) => {
+                return input !== "" ? true : "Email cannot be empty";
+            }
         },
         {
             type: 'input',
             message: "Enter the team manager's office number.",
             name:'managerOfficeNumber',
+            validate: (input) => {
+                return input !== '' && !isNaN(input) ? true : "Please enter a valid office number (numeric only)";
+            }
         },
     ]);
 
@@ -47,21 +59,33 @@ const promptEngineer = async () => {
             type: 'input',
             message: "Enter the engineer's name.",
             name:'engineerName',
+            validate: (input) => {
+                return input !== '' ? true : "Name cannot be empty";
+            }
         },
         {
             type: 'input',
             message: "Enter the engineer's ID.",
             name:'engineerId',
+            validate: (input) => {
+                return input !== '' && !isNaN(input) ? true : "Please enter a valid employee ID (numeric only)";
+            }
         },
         {
             type: 'input',
             message: "Enter the engineer's email.",
             name:'engineerEmail',
+            validate: (input) => {
+                return input !== "" ? true : "Email cannot be empty";
+            }
         },
         {
             type: 'input',
             message: "Enter the engineer's GitHub username.",
             name:'engineerGithub',
+            validate: (input) => {
+                return input !== "" ? true : "GitHub username cannot be empty";
+            }
         },
     ])
 
@@ -78,21 +102,33 @@ const promptIntern = async () => {
             type: 'input',
             message: "Enter the intern's name.",
             name:'internName',
+            validate: (input) => {
+                return input !== '' ? true : "Name cannot be empty";
+            }
         },
         {
             type: 'input',
             message: "Enter the intern's ID.",
             name:'internId',
+            validate: (input) => {
+                return !isNaN(input) ? true : "Please enter a valid employee ID (numeric only)";
+            }
         },
         {
             type: 'input',
             message: "Enter the intern's email.",
             name:'internEmail',
+            validate: (input) => {
+                return input !== "" ? true : "Email cannot be empty";
+            }
         },
         {
             type: 'input',
             message: "Enter the intern's School.",
             name:'internSchool',
+            validate: (input) => {
+                return input !== "" ? true : "School cannot be empty";
+            }
         },
     ])
 
