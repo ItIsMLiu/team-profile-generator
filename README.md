@@ -27,9 +27,7 @@ cd team-profile-generator
 npm install
 ```
 
-## Usage 
-
-Here is the proofread version:
+## Usage
 
 This application uses Jest for running unit tests and Inquirer for collecting input from the user. The application can be invoked using the following command:
 
